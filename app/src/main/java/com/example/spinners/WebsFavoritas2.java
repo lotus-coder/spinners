@@ -14,9 +14,11 @@ import java.util.HashMap;
 public class WebsFavoritas2 extends AppCompatActivity {
     private TextView datosPais;
     private Spinner spnrPaises;
-    private String [] websNombres = {"Nicaragua","El Salvador","Chile","Urugay",
-            "Bolivia","Argentina","Peru","Cuba","Venezuela","Colombia","Brasil"};
-    private HashMap<String,String> datos;
+    private String [] websNombres = {"google","PC Componentes","PC Gamer",};
+    private Webs [] datos = {new Webs("google","https://www.google.com",R.mipmap.logo_google),
+            new Webs("PC Componentes","https://www.pccomponentes.com",R.mipmap.pc_componentes),
+            new Webs("PC Gamer", "https://www.pcgamer.com",R.mipmap.pc_gamer)};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class WebsFavoritas2 extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String pais = spnrPaises.getItemAtPosition(position).toString();
-                datosPais.setText(pais+" tiene "+datos.get(pais)+" habitantes");
+                datosPais.setText(pais+" tiene  habitantes");
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){
@@ -50,17 +52,6 @@ public class WebsFavoritas2 extends AppCompatActivity {
         });
     }
     private void llenarMapa(){
-        datos = new HashMap<String, String>();
-        datos.put("Nicaragua","6 494 000");
-        datos.put("Bolivia","11 390 000");
-        datos.put("Argentina","44 723 000");
-        datos.put("Urugay","3 512 000");
-        datos.put("Chile","18 880 000");
-        datos.put("El Salvador","6 675 000");
-        datos.put("Venezuela"," 32 030 000");
-        datos.put("Colombia","49 737 000");
-        datos.put("Brasil","210 461 000");
-        datos.put("Peru","32 362 000");
-        datos.put("Cuba","11 212 000");
+
     }
 }
