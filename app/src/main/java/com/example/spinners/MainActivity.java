@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         Ejer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(MainActivity.this,WebsFavoritas2.class);
+                startActivity(i);
             }
         });
     }

@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Spinners">
-        <activity android:name=".websFavoritas"
-            android:label="@string/nom_webs"></activity>
+        <activity android:name=".WebsFavoritas2"></activity>
+        <activity
+            android:name=".websFavoritas"
+            android:label="@string/nom_webs" />
         <activity android:name=".Paises" />
         <activity android:name=".MainActivity">
             <intent-filter>
