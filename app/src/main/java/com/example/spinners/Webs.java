@@ -50,4 +50,9 @@ public class Webs {
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
+
+    @Override
+    public String toString() {
+        return nombre ;
+    }
 }

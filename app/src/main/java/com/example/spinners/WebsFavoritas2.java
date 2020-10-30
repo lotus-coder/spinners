@@ -6,18 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.HashMap;
 
 public class WebsFavoritas2 extends AppCompatActivity {
+
+    private ImageView imagen;
     private TextView datosPais;
     private Spinner spnrPaises;
     private String [] websNombres = {"google","PC Componentes","PC Gamer",};
-    private Webs [] datos = {new Webs("google","https://www.google.com",R.mipmap.logo_google),
-            new Webs("PC Componentes","https://www.pccomponentes.com",R.mipmap.pc_componentes),
-            new Webs("PC Gamer", "https://www.pcgamer.com",R.mipmap.pc_gamer)};
+    private Webs [] datos = {new Webs("google","https://www.google.com",R.drawable.logo_google_background),
+            new Webs("PC Componentes","https://www.pccomponentes.com",R.drawable.pc_componentes_background),
+            new Webs("PC Gamer", "https://www.pcgamer.com",R.drawable.pc_gamer_background)};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +29,15 @@ public class WebsFavoritas2 extends AppCompatActivity {
 
         spnrPaises = (Spinner) findViewById(R.id.websNombres);
 
-        datosPais = (TextView) findViewById(R.id.datoPais);
+        datosPais = (TextView) findViewById(R.id.textView);
 
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, websNombres);
+        imagen = (ImageView) findViewById(R.id.imagenWeb2);
+
+        ArrayAdapter<Webs> adaptador = new ArrayAdapter<Webs>(this,android.R.layout.simple_spinner_item, datos);
 
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spnrPaises.setAdapter(adaptador);
-        llenarMapa();
         eventos();
     }
 
@@ -42,8 +46,9 @@ public class WebsFavoritas2 extends AppCompatActivity {
         spnrPaises.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String pais = spnrPaises.getItemAtPosition(position).toString();
-                datosPais.setText(pais+" tiene  habitantes");
+                Webs pais = (Webs) spnrPaises.getItemAtPosition(position);
+                datosPais.setText(pais.getNombre());
+                imagen.setImageResource(pais.getImagen());
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){
@@ -51,7 +56,5 @@ public class WebsFavoritas2 extends AppCompatActivity {
             }
         });
     }
-    private void llenarMapa(){
 
-    }
 }
