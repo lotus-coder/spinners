@@ -2,6 +2,8 @@ package com.example.spinners;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +22,7 @@ public class WebsFavoritas2 extends AppCompatActivity {
     private String [] websNombres = {"google","PC Componentes","PC Gamer",};
     private Webs [] datos = {new Webs("google","https://www.google.com",R.drawable.logo_google_background),
             new Webs("PC Componentes","https://www.pccomponentes.com",R.drawable.pc_componentes_background),
-            new Webs("PC Gamer", "https://www.pcgamer.com",R.drawable.pc_gamer_background)};
+            new Webs("PC Gamer", "https://www.pcgamer.com",R.mipmap.pc_gamer)};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,20 @@ public class WebsFavoritas2 extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Webs pais = (Webs) spnrPaises.getItemAtPosition(position);
                 datosPais.setText(pais.getNombre());
-                imagen.setImageResource(pais.getImagen());
+                imagen.setImageDrawable(getResources().getDrawable(pais.getImagen(), getApplicationContext().getTheme()));;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent){
                 datosPais.setText("No se ha realizado ninguna selección");
+            }
+        });
+
+        datosPais.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Webs w = (Webs) spnrPaises.getSelectedItem();
+                Intent intent = new Intent (Intent.ACTION_VIEW, Uri.parse(w.getUrl()));
+                startActivity(intent);
             }
         });
     }
